@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
 import RefreshToken from './entities/refresh-token.entity';
 import { sign, verify } from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -59,8 +60,8 @@ export class AuthService {
     if (!user) {
       return undefined;
     }
-    // TODO: use bycrypt for hashing
-    if (user.password !== password) {
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
       return undefined;
     }
     return this.newRefreshAndAccessToken(user, values);

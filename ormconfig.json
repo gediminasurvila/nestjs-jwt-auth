@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "strapi",
+  "password": "strapi",
+  "database": "strapi",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
