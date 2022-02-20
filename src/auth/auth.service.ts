@@ -17,6 +17,7 @@ export class AuthService {
       return undefined;
     }
     const user = await this.userService.findOne(refreshToken.userId);
+
     if (!user) {
       return undefined;
     }
